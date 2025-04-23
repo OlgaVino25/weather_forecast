@@ -1,11 +1,20 @@
 import requests
 
-cities = ['London', 'Шереметьево', 'Череповец']
 
-for city in cities:
-    url = f'https://wttr.in/{city}?nTqu&lang=ru{"&m" if city != "London" else ""}'
-    url_city = url.format(city)
-    response = requests.get(url_city)
-    response.raise_for_status()
-    print(response.text)
-    print('-' * 30)
+def main():
+    cities = ['London', 'svo', 'Череповец']
+
+    payload = {
+        'nTqM': '',
+        'lang': 'ru',
+    }
+
+    for city in cities:
+        url = f'https://wttr.in/{city}'
+        response = requests.get(url, params=payload)
+        response.raise_for_status()
+        print(response.text)
+
+
+if __name__ == "__main__":
+    main()
